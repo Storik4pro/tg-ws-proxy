@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: "Версия сборки"
+        description: "Version (e.g. v1.5.0)"
         required: true
         type: string
       changelog:
@@ -30,7 +30,7 @@ jobs:
       - name: Download tg_ws_proxy.py from upstream
         shell: pwsh
         run: |
-          $url = "https://raw.githubusercontent.com/Flowseal/tg-ws-proxy/main/proxy/tg_ws_proxy.py"
+          $url = "https://github.com/Flowseal/tg-ws-proxy/blob/${{github.event.inputs.version}}/proxy/tg_ws_proxy.py"
           Invoke-WebRequest -Uri $url -OutFile tg_ws_proxy.py
 
       - name: Install dependencies
